@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',
+    'channels_redis',
     'myapp',
 ]
 
@@ -71,6 +72,14 @@ TEMPLATES = [
 
 #WSGI_APPLICATION = 'DjangoChannels.wsgi.application'
 ASGI_APPLICATION = "DjangoChannels.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
